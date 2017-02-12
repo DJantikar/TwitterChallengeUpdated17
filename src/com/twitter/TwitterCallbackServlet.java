@@ -29,10 +29,11 @@ public class TwitterCallbackServlet extends HttpServlet {
 			// Get twitter access token object by verifying request token 
 		    AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
 		    TokensAuth.setUserAuth(accessToken.getToken(), accessToken.getTokenSecret());
-		    response.sendRedirect("/TwitterChallenge17/AppTweetServlet");
+		    response.sendRedirect(request.getContextPath()+"/AppTweetServlet");
 
 		} catch (TwitterException e) {
-		    throw new ServletException(e);
+			System.out.println(e.getMessage());
+		    throw new ServletException();
 		} 
 		
     }
