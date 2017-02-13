@@ -95,16 +95,6 @@ table, td, th {
 		</table>
 	</div>
 	<%} %>
-<!-- FOOTER -->
-<footer role="contentinfo" class="slds-p-around--large">
-  <!-- LAYOUT GRID -->
-  <div class="slds-grid slds-grid--align-spread">
-  	<p></p>
-    <p class="slds-col">&copy; Deepa </p>
-  </div>
-  <!-- / LAYOUT GRID -->
-</footer>
-<!-- / FOOTER -->
 </div>
 </body>
 </html>
