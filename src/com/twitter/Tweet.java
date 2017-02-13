@@ -1,5 +1,5 @@
 package com.twitter;
-
+// Bean for tweet
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

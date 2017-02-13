@@ -20,8 +20,10 @@ public class FilterTweetServlet extends HttpServlet {
 
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Fetch the search key
 		String inputFilter = request.getParameter("inputFilter");
 		List<Tweet> filteredTweets = new ArrayList<Tweet>();
+		//Check for null or empty string
 		if(inputFilter!=null && !inputFilter.isEmpty()){
 		List<Tweet> tweets = (List<Tweet>) request.getSession().getAttribute("tweet_list");		
 			for(Tweet t : tweets){
@@ -30,10 +32,10 @@ public class FilterTweetServlet extends HttpServlet {
 				}
 			}
 		}
-		RequestDispatcher dispatcher=null;
-			request.getSession().setAttribute("filtered_tweet_list", filteredTweets);
-			dispatcher = request.getRequestDispatcher("/LDS_view_filtered_tweets.jsp");	
-			dispatcher.forward(request, response);		
+		//Push to JSP view from this controller
+		request.getSession().setAttribute("filtered_tweet_list", filteredTweets);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/LDS_view_filtered_tweets.jsp");	
+		dispatcher.forward(request, response);		
 	}
 
 }

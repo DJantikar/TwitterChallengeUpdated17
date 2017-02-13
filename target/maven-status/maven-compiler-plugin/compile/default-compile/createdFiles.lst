@@ -1,6 +1,7 @@
 com/twitter/AppTweetServlet.class
-com/twitter/Tweet.class
 com/twitter/TwitterSignInServlet.class
+com/twitter/Tweet.class
 com/twitter/FilterTweetServlet.class
+com/twitter/LogoutServlet.class
 com/twitter/TokensAuth.class
 com/twitter/TwitterCallbackServlet.class

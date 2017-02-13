@@ -36,25 +36,35 @@ table, td, th {
 <% response.setIntHeader("Refresh", 60);%>
 <!-- REQUIRED SLDS WRAPPER -->
  <div class="TDJ">
-			 <!-- MASTHEAD -->
-			    <p class="slds-text-heading--label slds-m-bottom--medium">
-			      	Salesforce Lightning Design System View Tweets Module
-			    </p>
-			  <!-- / MASTHEAD -->
- <!-- PAGE HEADER -->
-<br>
-<div class="slds-page-header" role="banner">
-	<div class="slds-grid">
-		<div class="slds-col slds-size--3-of-6"><b>Top ten tweets from Salesforce </b></div>	 	
-	    <div align="right" class="slds-col slds-size--3-of-6">
-	    		<form action="FilterTweetServlet" method="GET">
-	    			<input type="text" name="inputFilter" placeholder="Type search key .."/>
-	    			<button type="submit">Filter</button>						
-				</form>			
-	    </div>		    
-		<!-- / PAGE HEADER -->
-	</div>
-</div>
+			 <!-- MASTHEAD -->			    
+			    <div class="slds-grid">
+					<div class="slds-col slds-size--3-of-6"><p class="slds-text-heading--label slds-m-bottom--medium">
+			      	Salesforce Lightning Design System View Tweets Module</p></div>	 			      		
+	    			<div align="right" class="slds-col slds-size--1-of-6">
+	    					<form action="LogoutServlet" method="GET">
+	    						<button class="slds-button slds-button--neutral" type="submit">Logout</button>						
+							</form>			
+	    			</div>		    
+				</div>
+			 <!-- / MASTHEAD -->
+			 
+ 			 <!-- PAGE HEADER -->
+
+			<div class="slds-page-header" role="banner">
+				<div class="slds-grid">
+					<div class="slds-col slds-size--4-of-6"><b>Top ten tweets from <%= request.getSession().getAttribute("account") %> timeline </b></div>	 	
+					    <div align="right" class="slds-col slds-size--2-of-6">
+					    		<form action="FilterTweetServlet" method="GET">
+					    			<div class="slds-grid">
+					    				<div class="slds-col slds-size--3-of-4">
+					    					<input display="" type="text" class="slds-input" name="inputFilter" placeholder="Type search key .."/></div>
+					    				<div align="right" class="slds-col slds-size--1-of-4">
+					    					<button  class="slds-button slds-button--neutral"  type="submit">Filter</button></div>
+					    			</div>						
+								</form>			
+					    </div>		    
+				</div>
+			</div>
 <div>
 	<br><br>
 	<table>
@@ -82,6 +92,16 @@ table, td, th {
 	  </tbody>
 	</table>
 </div>
+<!-- FOOTER -->
+<footer role="contentinfo" class="slds-p-around--large">
+  <!-- LAYOUT GRID -->
+  <div class="slds-grid slds-grid--align-spread">
+  	<p></p>
+    <p class="slds-col">&copy; Deepa </p>
+  </div>
+  <!-- / LAYOUT GRID -->
+</footer>
+<!-- / FOOTER -->
 </div>
 </body>
 </html>

@@ -23,16 +23,17 @@ public class TwitterSignInServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			//Form the callback url
 			StringBuffer callbackURL = request.getRequestURL();
 			int index = callbackURL.lastIndexOf("/");
 			callbackURL.replace(index, callbackURL.length(), "").append("/TwitterCallbackServlet");
-			 
+			
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true).setOAuthConsumerKey(TokensAuth.consumerKey)
 			            .setOAuthConsumerSecret(TokensAuth.consumerSecret)
 			            .setOAuthAccessToken(null)
 			            .setOAuthAccessTokenSecret(null);
-			     
+			 //Get twitter instance without access token    
 			 TwitterFactory tf = new TwitterFactory(cb.build());
 			 Twitter twitter = tf.getInstance();
 
@@ -41,7 +42,9 @@ public class TwitterSignInServlet extends HttpServlet {
 			 RequestToken requestToken = twitter.getOAuthRequestToken(callbackURL.toString());
 			
 			 request.getSession().setAttribute("requestToken", requestToken);
-		
+			 
+			 request.getSession().setAttribute("account", request.getParameter("account"));
+			 //Sign into twitter
 			 response.sendRedirect(requestToken.getAuthenticationURL());
 		
 		} catch (TwitterException e) {

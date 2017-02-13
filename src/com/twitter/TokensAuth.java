@@ -1,7 +1,5 @@
 package com.twitter;
-
-
-
+// Tokens storage
 public class TokensAuth
 {
     public static String access_token ="";

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
 <head>
@@ -8,10 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles/salesforce-lightning-design-system-vf.min.css"  type="text/css">
 </head>
-
 <body>
-
-
   <!-- REQUIRED SLDS WRAPPER -->
   <div class="TDJ">
 
@@ -31,33 +27,33 @@
 			      <!-- BOXED AREA -->
 			      <fieldset class="slds-box slds-theme--default slds-container--small">			
 			        <div class="slds-form-element">
-			          <label >Hello ! Please authorize my app to view your tweets .. </label>
+			          <label >Hello ! Please login to twitter to view tweets from account </label>
 			        </div>
-			        <button class="slds-button slds-button--brand slds-m-top--medium" type="submit">Authorize</button>
+			        <br>
+			        <input type="radio" name="account" value="salesforce" checked> Salesforce <br>
+  					<input type="radio" name="account" value="your"> Self <br>
+			        <button class="slds-button slds-button--brand slds-m-top--medium" type="submit">Login</button>
 			      </fieldset>
 			      <!-- / BOXED AREA -->
 			    </form>
-			    <!-- FORM -->
-			
+			    <!-- FORM -->		
 			</div>
-	  </div>
-	  
+	  </div>	  
 	</div>
-	<!-- / PAGE HEADER --
-
-<!-- FOOTER -->
-<footer role="contentinfo" class="slds-p-around--large">
-  <!-- LAYOUT GRID -->
-  <div class="slds-grid slds-grid--align-spread">
-  	<p></p>
-    <p class="slds-col">&copy; Deepa </p>
-  </div>
-  <!-- / LAYOUT GRID -->
-</footer>
-<!-- / FOOTER -->
-
-  </div>
+	<!-- / PAGE HEADER -->	
+ </div>
   <!-- / REQUIRED SLDS WRAPPER -->
-	
-	</body>
+ <div  class="TDJ">
+ 	<!-- FOOTER -->
+	<footer role="contentinfo" class="slds-p-around--large">
+	  <!-- LAYOUT GRID -->
+	  <div class="slds-grid slds-grid--align-spread">
+	  	<p></p>
+	    <p class="slds-col">&copy; Deepa </p>
+	  </div>
+	  <!-- / LAYOUT GRID -->
+	</footer>
+	<!-- / FOOTER -->
+</div>
+</body>
 </html>

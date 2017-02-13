@@ -37,9 +37,15 @@ table, td, th {
 <!-- REQUIRED SLDS WRAPPER -->
  <div class="TDJ">
 	 <!-- MASTHEAD -->
-	    <p class="slds-text-heading--label slds-m-bottom--medium">
-	      	Salesforce Lightning Design System View Filtered Tweets Module
-	    </p>
+	    <div class="slds-grid">
+			<div class="slds-col slds-size--3-of-6"><p class="slds-text-heading--label slds-m-bottom--medium">
+	      		Salesforce Lightning Design System View Filtered Tweets Module</p></div>		      		
+   			<div align="right" class="slds-col slds-size--1-of-6">
+   					<form action="LogoutServlet" method="GET">
+   						<button class="slds-button slds-button--neutral" type="submit">Logout</button>						
+					</form>			
+   			</div>		    
+		</div>
 	  <!-- / MASTHEAD -->
   	<br>
   	<% ArrayList<Tweet> tl = (ArrayList<Tweet>)  request.getSession().getAttribute("filtered_tweet_list");%>
@@ -56,7 +62,7 @@ table, td, th {
 			</div>	 	
 	    	<div align="right" class="slds-col slds-size--3-of-6">
 	    		<form action="AppTweetServlet" method="GET">
-	    			<button type="submit">Home</button>						
+	    			<button class="slds-button slds-button--neutral" type="submit">Home</button>						
 				</form>			
 	    	</div>		    
 		</div>
@@ -89,6 +95,16 @@ table, td, th {
 		</table>
 	</div>
 	<%} %>
+<!-- FOOTER -->
+<footer role="contentinfo" class="slds-p-around--large">
+  <!-- LAYOUT GRID -->
+  <div class="slds-grid slds-grid--align-spread">
+  	<p></p>
+    <p class="slds-col">&copy; Deepa </p>
+  </div>
+  <!-- / LAYOUT GRID -->
+</footer>
+<!-- / FOOTER -->
 </div>
 </body>
 </html>

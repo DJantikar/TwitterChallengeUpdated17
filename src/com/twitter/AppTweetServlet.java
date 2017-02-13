@@ -25,7 +25,7 @@ public class AppTweetServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+			// Fetch tokens from model
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true)
 			  .setOAuthConsumerKey(TokensAuth.consumerKey)
@@ -33,20 +33,27 @@ public class AppTweetServlet extends HttpServlet {
 			  .setOAuthAccessToken(TokensAuth.access_token)
 			  .setOAuthAccessTokenSecret(TokensAuth.access_token_secret);
 			
-			
+			//Instantiate twitter instance
 			TwitterFactory tf = new TwitterFactory(cb.build());
 			twitter4j.Twitter t = tf.getInstance();
 
 			
 			try {
-				List<Status> status = t.getHomeTimeline().subList(0, 9);
+				//Check for account selected
+				String user = (String) request.getSession().getAttribute("account");
+				List<Status> status;
+				if(user.equals("salesforce"))
+					status = t.getUserTimeline(user).subList(0, 9);
+				else
+					status = t.getHomeTimeline().subList(0, 9);
 				List<Tweet> tweets = new ArrayList<Tweet>();
 				for(Status s : status){
 					tweets.add(new Tweet(s.getUser().getName(),"@"+s.getUser().getScreenName(),
 							s.getUser().getMiniProfileImageURL(),s.getText() ,s.getRetweetCount(),s.getCreatedAt()));
 				}
+				//Set list to retrieve in view
 				request.getSession().setAttribute("tweet_list", tweets);
-				
+				//Push from controller to view
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/LDS_view_tweets.jsp");
 				dispatcher.forward(request, response);
 			} 
