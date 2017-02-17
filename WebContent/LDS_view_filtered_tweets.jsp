@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@page import="java.util.ArrayList" %>
-<%@page import="com.twitter.Tweet" %>
+
 <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
 <head>
   <meta charset="utf-8" />
@@ -31,6 +30,7 @@ table, td, th {
     border: 1px solid #ddd;
 }
 </style>
+<script type="text/javascript" src="underscore.js"></script>
 </head>
 <body>
 <% response.setIntHeader("Refresh", 30);%>
@@ -48,17 +48,10 @@ table, td, th {
 		</div>
 	  <!-- / MASTHEAD -->
   	<br>
-  	<% ArrayList<Tweet> tl = (ArrayList<Tweet>)  request.getSession().getAttribute("filtered_tweet_list");%>
 	<div class="slds-page-header" role="banner">
 		<div class="slds-grid">
 			<div class="slds-col slds-size--3-of-6">
-				<%if(tl.isEmpty()){ %>
-				<b>Sorry ! No tweets with string '</b>
-				<%} 
-				else{%>
-				<b>Tweets with string '</b>
-				<%} %>
-				 <b><%=request.getParameter("inputFilter") %>' </b>
+				 <b><%=request.getSession().getAttribute("msg") %> </b>
 			</div>	 	
 	    	<div align="right" class="slds-col slds-size--3-of-6">
 	    		<form action="AppTweetServlet" method="GET">
@@ -67,34 +60,42 @@ table, td, th {
 	    	</div>		    
 		</div>
 	</div>
-	<%if(!tl.isEmpty()){ %>
-	<div>
-		<table>
-		  <tbody>
-			<tr>
-					<th>Profile</th>
-					<th> UserName </th>
-					<th> ScreenName </th>
-					<th> Tweet </th>
-					<th> Retweeted </th>
-					<th> Date </th>
-			</tr>
-			<%
-		       for (Tweet t : tl) {
-			%>                    
-				<tr>
-					<td align="center" ><img src=<%=t.getProfileImage()%>/></td>
-					<td><%=t.getUserName() %></td>
-					<td><%=t.getScreenName() %></td>
-					<td><%=t.getTweetContent() %></td>
-					<td><%=t.getRetweetCount() %></td>
-					<td><%=t.getTweetDate() %></td>
-				</tr>
-			<%}%>
-		  </tbody>
-		</table>
-	</div>
-	<%} %>
+<br><br>
+	<table id="outer">
+	  <thead>
+		<tr>
+				<th>Profile</th>
+				<th> UserName </th>
+				<th> ScreenName </th>
+				<th align="center"> Tweet </th>
+				<th> Retweeted </th>
+				<th> Date </th>
+		</tr>
+	  </thead>
+	  <tbody>
+	  </tbody>
+	</table>
+	<script type="text/javascript">
+	  function getTweetInfo(elem, indx, list) {
+	  	var container = document.getElementById("outer");
+	  	var tweet = "<tr><td><img src='"+elem.ProfilePic+"'</td>"+
+					"<td>"+elem.UserName+"</td>"+
+					"<td>"+elem.ScreenName+"</td>"+
+					"<td>"+elem.Tweet+"</td>"+
+					"<td>"+elem.Retweeted+"</td>"+
+					"<td>"+elem.Created+"</td></tr>";
+	  	container.innerHTML = container.innerHTML + tweet;
+	  }
+	  
+	  window.addEventListener("load", function(e) {
+	    var t = <%= request.getSession().getAttribute("filtered_tweet_list") %>; 
+	    var tweets = eval(t);
+		//alert(t);
+		//alert(tweets)
+		 /* use the each() function to iterate over every element */
+		_.each(tweets, getTweetInfo);
+	  });
+	 </script>
 </div>
 </body>
 </html>
