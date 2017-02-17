@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>TwitterChallenge17</groupId>
-  <artifactId>TwitterChallenge17</artifactId>
+  <groupId>TwitterChallengeUpdated17</groupId>
+  <artifactId>TwitterChallengeUpdated17</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>TwitterChallenge17</name>
-  <description>TwitterChallenge17</description>
+  <name>TwitterChallengeUpdated17</name>
+  <description>TwitterChallengeUpdated17</description>
   <dependencies>
 	 <dependency>
 	    <groupId>org.twitter4j</groupId>
@@ -17,8 +17,12 @@
     <artifactId>tomcat-servlet-api</artifactId>
     <version>9.0.0.M15</version>
 </dependency>
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20160810</version>
+</dependency>
 
-  
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
